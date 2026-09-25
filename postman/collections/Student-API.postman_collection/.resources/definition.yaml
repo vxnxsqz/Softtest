@@ -1,0 +1,53 @@
+$kind: collection
+description: ""
+variables:
+  json_web_token_0o8m: ""
+  json_web_token_0wn5: ""
+  json_web_token_0pge: ""
+  json_web_token_0mxr: ""
+  json_web_token_16ge: ""
+  json_web_token_16uq: ""
+  json_web_token_05wf: ""
+  json_web_token_01j0: ""
+  json_web_token_159b: ""
+  json_web_token_17if: ""
+  json_web_token_0iyw: ""
+  json_web_token_03eb: ""
+scripts:
+  - type: http:afterResponse
+    code: |-
+      if (pm.info.requestName === "TC1 Login Success" && pm.response.code === 200) {
+          pm.environment.set("token", pm.response.json().token);
+      }
+
+      const expectedStatuses = {
+          "TC4 Get Student Success": 200,
+          "TC5 Get Student Not Found": 404,
+          "TC6 Get Student Unauthorized": 401,
+          "TC7 Get Student Invalid Token": 401,
+          "TC8 Course Sucessful1 SoftTest": 200,
+          "TC9 Course Sucessful2 WebApp": 200,
+          "TC10 Course Sucessful3 APIDev": 200,
+          "registration sucessful": 201,
+          "Delete-Course of Student": 200,
+          "TC11 Boundary 22 Accepted": 201,
+          "TC12 Over 22 Rejected": 400,
+          "TC13 Course Full": 409,
+          "TC14 Duplicate Registration": 409,
+          "TC15 Student Not Found": 404,
+          "TC16 Course Not Found": 404
+      };
+
+      const expectedStatus = expectedStatuses[pm.info.requestName];
+      if (expectedStatus !== undefined) {
+          pm.test(`Status is ${expectedStatus}`, function () {
+              pm.response.to.have.status(expectedStatus);
+          });
+      }
+    language: text/javascript
+auth:
+  - id: 8e08f838-c6f0-4947-9172-bc787ede8cb1
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"

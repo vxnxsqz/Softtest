@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost:3000/api/registrations
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"studentId\": \"663020003\",\r
+
+    \  \"courseId\": \"CP322001\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+order: 5000

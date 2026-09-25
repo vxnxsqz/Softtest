@@ -1,0 +1,17 @@
+{
+  "name": "student-registration-api",
+  "version": "1.0.0",
+  "description": "Software Testing workshop API with Postman/Newman and GitHub Actions",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test:api": "newman run postman/Student-API.postman_collection.json -e postman/CI.postman_environment.json"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "newman": "^6.2.2"
+  }
+}

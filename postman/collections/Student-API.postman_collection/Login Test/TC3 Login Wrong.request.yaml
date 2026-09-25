@@ -1,0 +1,21 @@
+$kind: http-request
+url: http://localhost:3000/api/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"username\": \"student\",\r
+
+    \  \"password\": \"wrongpassword999\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status is 401 Unauthorized\", function () {\r
+
+      \    pm.response.to.have.status(401);\r
+
+      });"
+    language: text/javascript
+order: 3000

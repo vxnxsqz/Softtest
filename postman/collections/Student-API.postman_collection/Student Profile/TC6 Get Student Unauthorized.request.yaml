@@ -1,0 +1,6 @@
+$kind: http-request
+url: http://localhost:3000/api/students/663020003
+method: GET
+auth:
+  type: noauth
+order: 3000

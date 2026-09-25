@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{base_url}}/api/courses/CP323001"
+method: GET
+order: 3000
